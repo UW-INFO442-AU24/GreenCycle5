@@ -6,16 +6,32 @@
 
 <h2>Our Mission </h2>
 
-The goal of this webite is to educate users living in the Puget Sound area on how to properly recycle, where their nearest waste facilities are located, and uniting communities together to create a greener city. 
+GreenCycle's mission is to educate Puget Sound residents on proper recycling practices, provide information on nearby waste facilities, and foster community collaboration in building a greener, more sustainable city. 
 
 
 ## Features
+* Homepage 
+    * Why recycle?
+    * Educational cards
+    * FAQ’s for recycling in Seattle
+    * Quiz link
+
 * Interactive Map
+    * Filter cities
+    * Drop off locations
+
 * Navigation bar
+    * About us
+    * Why recycle
+    * Local community page
+    * Support (homepage?, bottom)
+    * Search engine 
+    * Language option?
+    * Learning quiz
+    * Map
+
 * Learning Quiz
-* Informatiomal Homepage
-
-
+    * How much do you know about recyling?
 
 
 
