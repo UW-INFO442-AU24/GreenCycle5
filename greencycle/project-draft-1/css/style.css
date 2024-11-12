@@ -1,0 +1,120 @@
+/* overall website styling theme */
+body{
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    background-color: white;
+    background-size: cover;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+header{
+    font-family: "Helvetica Neue";
+    font-weight: bold;
+    text-shadow: 2px 2px 2px grey;
+    color: white;
+    text-align: center;
+    font-size: 35px;
+    padding: 1rem;
+    padding-bottom: .5rem;
+    text-decoration: none;
+}
+
+footer {
+    text-align: center;
+    font-size: 20px;
+    margin-top: auto;
+    padding: 10px;
+}
+
+.menu {
+    color: white;
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin: 20px 30px;
+    font-size: 38px;
+    text-shadow: 0 5px 15px rgba(0,0,0,0.16), 0 5px 15px rgba(0,0,0,0.23);
+}
+
+.profile {
+    color: white;
+    position: absolute;
+    top: 10px; 
+    right: 10px; 
+    margin: 10px 25px;
+    font-size: 35px;
+    text-shadow: 0 5px 15px rgba(0,0,0,0.16), 0 5px 15px rgba(0,0,0,0.23);
+}
+
+h1 {
+    font-family: "Helvetica Neue";
+    font-size: 18px;
+    margin-left: 1rem;
+    text-shadow: 1px 1px 1px grey;
+    letter-spacing: .10em;
+}
+
+/* navigation bar */
+
+.nav-container {
+    backdrop-filter: blur(10px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.nav-container ul {
+    text-align: center;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-container li {
+    display: inline-block;
+    margin-right: 10px;
+    padding-bottom: .5rem;
+}
+
+.nav-container a {
+    text-decoration: none;
+    color: white;
+    font-size: 13px;
+    text-shadow: 2px 2px 2px grey;
+    font-family: "Helvetica Neue";
+    letter-spacing: .1em;
+    padding: .5rem .2rem;
+}
+
+
+/* media queries */
+/* Small screens (mobile) */
+
+
+@media screen and (max-width: 767px) {
+    /* overall page adjustment */
+	
+}
+
+
+/* Medium screens (tablets) */
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+	body {
+        	font-size: 18px;
+	}
+	.header {
+        	font-size: 28px;
+    	}
+}
+
+/* Large screens (desktops) */
+@media screen and (min-width: 1024px) {
+	body {
+		font-size: 20px;
+	}
+       .header {
+        	font-size: 32px;
+    	}
+}
