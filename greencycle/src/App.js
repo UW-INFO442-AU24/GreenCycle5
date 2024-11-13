@@ -1,6 +1,6 @@
 import React from 'react'
 import NavBar from './components/NavBar/navbar.js';
-import Home from './components/Home/home.js';
+import Home from './components/Home/Home.js';
 import About from './components/About/about.js';
 import Map from './components/Map/map.js';
 import Quiz from './components/Quiz/quiz.js';
@@ -14,13 +14,23 @@ export default function App(props) {
       <NavBar/>
       <Router>
         <Routes>
-          <Route path="/Home" element={<Home/>} />
-          <Route path="/About" element={<About/>} />
-          <Route path="/Map" element={<Map/>} />
-          <Route path="/Quiz" element={<Quiz/>} />
-          <Route path="/Community" element={<Community/>} />
+          <Route path="/Home" element={<Home />} />
+          <Route path="/About" element={<About />} />
+          <Route path="/Map" element={<Map />} />
+          <Route path="/Quiz" element={<Quiz />} />
+          <Route path="/Community" element={<Community />} />
         </Routes>
-      </Router> 
+      </Router>
     </div>
   );
 }
+
+function App() {
+  return (
+    <div className="App">
+      <Home />
+    </div>
+  );
+}
+
+export default App;

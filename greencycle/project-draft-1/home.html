@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="author" content="">
@@ -9,8 +10,12 @@
     <link rel="icon" type="image/x-icon" href="img/favicon.png">
     <title>home</title>
 </head>
+
+
 <body>
-    
+    <div id="root"></div>
+    <script src="bundle.js"></script>
+
     <div class="nav-container">
         <span class="menu material-icons">menu</span>
         <header>Green Cycle 5</header>
@@ -27,10 +32,48 @@
         </nav>
     </div>
 
-    <main>
 
-                
-            
+    <main>
+        <main className="main-content">
+            <section id="hero" className="hero">
+                <h2>Welcome to GreeCycles!</h2>
+                <p>Learn how to recycle properly and make your community greener!</p>
+            </section>
+
+            <section id="why-recycle" className="section">
+                <h2>Why Recycle?</h2>
+                <p>Learn the importance of recycling and how it benefits our environment.</p>
+            </section>
+
+            <section id="educational-cards" className="section">
+                <h2>Educational Cards</h2>
+                <p>Get quick tips and information on recycling best practices.</p>
+            </section>
+
+            <section id="faq" className="section">
+                <h2>FAQs for Recycling in Seattle</h2>
+                <p>Answers to frequently asked questions about recycling in the Puget Sound area.</p>
+            </section>
+
+            <section id="about-us" className="section">
+                <h2>About Us</h2>
+                <p>Meet the team behind GreeCycles and learn about our mission.</p>
+            </section>
+
+
+        </main>
+
+
+        <footer className="footer">
+            <p>&copy; 2024 GreeCycles. All rights reserved.</p>
+            <p>Contact us: info@greencycles.com</p>
+        </footer>
+        </div>
+
+
+
+
+
     </main>
 
     <footer>
@@ -40,4 +83,5 @@
     </footer>
 
 </body>
+
 </html>
