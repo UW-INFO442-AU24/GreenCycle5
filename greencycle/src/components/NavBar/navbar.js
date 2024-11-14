@@ -1,33 +1,31 @@
-import React from 'react'
-import { NavLink } from "react-router-dom";
-import { Dropdown, Nav } from "react-bootstrap"
-import { InputGroup, Button, Input } from 'reactstrap';
-import { useState } from "react"
+import React from 'react';
+import { NavLink } from 'react-router-dom';
 
-export default function NavBar(props) {
-
-    const [hamburgerOpen, setHamburgerOpen] = useState(false);
-
-    const handleToggle = () => {
-        setHamburgerOpen(previousValue => !previousValue)
-    }
-
-    return (
-        <div className="nav-container">
-          <header>Green Cycle</header>
-           <div className="navbar">
-            <nav>
-              <ul className={`menuNav ${hamburgerOpen ? " showMenu" : ""}`}>
-                <li>
-                    <a className="navigator" href="/Home">Home</a>
-                    <a className="navigator" href="/Map">Map</a>
-                    <a className="navigator" href="/Quiz">Quiz</a>
-                    <a className="navigator" href="/Community">Community</a>
-                    <a className="navigator" href="/About">About</a>
-                </li>
-              </ul>
-            </nav>
-          </div>
-        </div>
-      );
+export default function NavBar() {
+  return (
+    <div className="nav-container">
+      <header>Green Cycle</header>
+      <div className="navbar">
+        <nav className="menuNav">
+          <ul>
+            <li>
+              <NavLink className="navigator" to="/Home">Home</NavLink>
+            </li>
+            <li>
+              <NavLink className="navigator" to="/Map">Map</NavLink>
+            </li>
+            <li>
+              <NavLink className="navigator" to="/Quiz">Quiz</NavLink>
+            </li>
+            <li>
+              <NavLink className="navigator" to="/Community">Community</NavLink>
+            </li>
+            <li>
+              <NavLink className="navigator" to="/About">About</NavLink>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  );
 }
