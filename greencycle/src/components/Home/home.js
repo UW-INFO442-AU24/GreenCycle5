@@ -1,8 +1,7 @@
-<<<<<<< HEAD
 import React from 'react';
-import './Home.css'; // Import your CSS file
+// import './Home.css'; // Import your CSS file
 import { useNavigate } from "react-router-dom";
-import EducationalCards from './EducationalCards'; // Import the EducationalCards component
+import EducationalCards from './Educationalcards.js'; // Import the EducationalCards component
 
 function Home() {
     const navigate = useNavigate();
@@ -62,10 +61,3 @@ function Home() {
 }
 
 export default Home;
-=======
-import React from 'react'
-
-export default function Home(props) {
-
-}
->>>>>>> 94c918620f48a8cfe0d5dfa4ceb137dfd133f436
