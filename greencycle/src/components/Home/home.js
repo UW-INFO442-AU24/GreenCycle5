@@ -1,9 +1,11 @@
 import React from 'react';
 import './Home.css'; // Import your CSS file
 import { useNavigate } from "react-router-dom";
+import EducationalCards from './EducationalCards'; // Import the EducationalCards component
 
 function Home() {
     const navigate = useNavigate();
+
     return (
         <div className="home">
             {/* Navigation Bar */}
@@ -34,6 +36,8 @@ function Home() {
                 <section id="educational-cards" className="section">
                     <h2>Educational Cards</h2>
                     <p>Get quick tips and information on recycling best practices.</p>
+                    {/* Include the EducationalCards component here */}
+                    <EducationalCards />
                 </section>
 
                 <section id="faq" className="section">
@@ -54,6 +58,6 @@ function Home() {
             </footer>
         </div>
     );
-};
+}
 
 export default Home;
