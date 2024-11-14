@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import './quiz.css';
 
 function Quiz() {
     // Correct Answers

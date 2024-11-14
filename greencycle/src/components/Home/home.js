@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React from 'react';
 import './Home.css'; // Import your CSS file
 import { useNavigate } from "react-router-dom";
@@ -61,3 +62,10 @@ function Home() {
 }
 
 export default Home;
+=======
+import React from 'react'
+
+export default function Home(props) {
+
+}
+>>>>>>> 94c918620f48a8cfe0d5dfa4ceb137dfd133f436

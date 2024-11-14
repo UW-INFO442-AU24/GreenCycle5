@@ -2,23 +2,21 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="author" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="css/style.css">
     <link rel="icon" type="image/x-icon" href="img/favicon.png">
-    <title>community</title>
+    <title>Community</title>
 </head>
 <body>
-    
+
     <div class="nav-container">
         <span class="menu material-icons">menu</span>
-        <header>Green Cycle 5</header>
+        <header>GreeCycle</header>
         <span class="profile material-icons">account_circle</span>
-
         <nav>
             <ul>
-                <li><a href="home.html">HOME PAGE</a></li>
+                <li><a href="home.html">HOME</a></li>
                 <li><a href="quiz.html">QUIZ</a></li>
                 <li><a href="community.html">COMMUNITY</a></li>
                 <li><a href="map.html">MAP</a></li>
@@ -28,16 +26,37 @@
     </div>
 
     <main>
+        <!-- Community Header -->
+        <section class="community-header">
+            <h1>Welcome to the Community Page!</h1>
+            <p>Stay updated on local recycling events, explore articles on sustainability, and join the conversation.</p>
+        </section>
 
-                
-            
+        <!-- Events Section -->
+        <section class="community-events">
+            <h2>Upcoming Recycling Events</h2>
+            <div class="event-card">
+                <h3>Beach Cleanup Day</h3>
+                <p><strong>Date:</strong> March 15, 2024</p>
+                <p><strong>Location:</strong> Puget Sound Beach</p>
+                <button onclick="showEventDetails()">More Info</button>
+            </div>
+            <!-- Additional events can go here -->
+        </section>
+
+        <!-- Articles Section -->
+        <section class="community-articles">
+            <h2>Recycling Tips & Articles</h2>
+            <div class="article-card">
+                <h3>5 Simple Ways to Reduce Plastic Use</h3>
+                <p>Learn how to minimize plastic waste in your daily life with these easy tips.</p>
+                <button onclick="showArticleDetails()">Read More</button>
+            </div>
+            <!-- Additional articles can go here -->
+        </section>
     </main>
 
     <footer>
-        <small>
-            &copy; 2024 Green Cycle 5
-        </small>
+        <small>&copy; 2024 GreeCycle</small>
     </footer>
 
-</body>
-</html>
