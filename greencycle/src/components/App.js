@@ -20,7 +20,7 @@ export default function App() {
           <Route path="/quiz" element={<Quiz />} />
           <Route path="/community" element={<Community />} />
           <Route path="/about" element={<About />} />
-          <Route path="*" element={<Navigate to="/home" />} /> {/* Redirect unknown paths to /home */}
+          <Route path="*" element={<Navigate to="/home" />} /> 
         </Routes>
       </div>
     </BrowserRouter>
