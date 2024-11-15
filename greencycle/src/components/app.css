@@ -255,6 +255,143 @@ a {
     color: blue;
 }
 
+/* Map Page */
+
+.leaflet-control-attribution {
+    padding: 2px 5px;
+    font-size: 10px;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 4px;
+    box-shadow: none;
+    display: inline-block;
+    width: auto;
+}
+
+.leaflet-control-attribution a {
+    display: inline;
+    margin-right: 3px;
+}
+
+.leaflet-bottom .leaflet-control-attribution {
+    left: 10px;
+    right: auto;
+}
+
+/* Overall container for map page */
+.main-container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+/* Styling for the search bar container */
+.map-controls {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+/* Search bar styling */
+.search-bar {
+    width: 100%;
+  
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+/* Positioning the autocomplete dropdown right below the search bar */
+.autocomplete-dropdown {
+    position: absolute;
+    top: 100%; /* Aligns below the search bar */
+    left: 0;
+    width: 100%;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-top: none;
+    max-height: 200px;
+    overflow-y: auto;
+    z-index: 1000;
+    border-radius: 0 0 4px 4px;
+}
+
+/* Autocomplete item styling */
+.autocomplete-item {
+    padding: 10px;
+    cursor: pointer;
+}
+
+.autocomplete-item:hover {
+    background-color: #f0f0f0;
+}
+
+
+/* Container for map and sidebar */
+.content-container {
+    display: flex;
+    flex: 1;
+}
+
+/* Main map styling */
+.map {
+    width: 70%;
+    height: 100%;
+}
+
+/* Sidebar styling */
+.sidebar {
+    width: 30%;
+    padding: 20px;
+    background-color: #f8f8f8;
+    overflow-y: auto;
+}
+
+.facility-card {
+    margin-bottom: 15px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: white;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.facility-card:hover {
+    background-color: #e0e0e0;
+}
+
+
+/* Highlighted style for sidebar items */
+.facility-card.highlighted {
+    background-color: #e0e0e0; /* Change to desired highlight color */
+    cursor: pointer;
+}
+
+.leaflet-tooltip {
+    background-color: #fff;
+    border-radius: 4px;
+    padding: 8px;
+    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.2);
+    font-size: 14px;
+}
+
+.location-button {
+    background-color: #8f8f8f;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.location-button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
 
 
 
