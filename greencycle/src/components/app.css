@@ -280,24 +280,26 @@ a {
 /* Overall container for map page */
 .main-container {
     display: flex;
-    flex-direction: column;
-    height: 100vh;
+    height: 100vh; /* Ensures it takes the full viewport height */
+    overflow: hidden; /* Prevents scrolling for the entire container */
 }
 
 /* Styling for the search bar container */
 .map-controls {
-    position: relative;
-    display: flex;
-    flex-direction: row;
-    gap: 10px;
-    align-items: center;
-    margin-bottom: 10px;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    z-index: 1000;
+    background: white;
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    width: 300px;
 }
 
 /* Search bar styling */
 .search-bar {
     width: 100%;
-  
     font-size: 16px;
     border: 1px solid #ccc;
     border-radius: 4px;
@@ -306,22 +308,23 @@ a {
 /* Positioning the autocomplete dropdown right below the search bar */
 .autocomplete-dropdown {
     position: absolute;
-    top: 100%; /* Aligns below the search bar */
-    left: 0;
-    width: 100%;
     background-color: white;
     border: 1px solid #ccc;
-    border-top: none;
+    width: calc(100% - 20px); /* Matches the width of the search bar */
     max-height: 200px;
     overflow-y: auto;
     z-index: 1000;
-    border-radius: 0 0 4px 4px;
+    margin-top: 5px;
 }
 
-/* Autocomplete item styling */
 .autocomplete-item {
     padding: 10px;
     cursor: pointer;
+    border-bottom: 1px solid #eee;
+}
+
+.autocomplete-item:last-child {
+    border-bottom: none;
 }
 
 .autocomplete-item:hover {
@@ -333,20 +336,22 @@ a {
 .content-container {
     display: flex;
     flex: 1;
+    overflow: hidden;
 }
 
 /* Main map styling */
 .map {
-    width: 70%;
-    height: 100%;
+    flex: 1;
+    height: 100%; /* Ensures the map takes the full height */
 }
 
-/* Sidebar styling */
 .sidebar {
     width: 30%;
-    padding: 20px;
+    overflow-y: auto; /* Allows only the sidebar to scroll */
+    padding: 10px;
     background-color: #f8f8f8;
-    overflow-y: auto;
+    border-right: 1px solid #ccc;
+    box-shadow: 2px 0px 5px rgba(0, 0, 0, 0.1);
 }
 
 .facility-card {
@@ -354,13 +359,27 @@ a {
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
-    background-color: white;
     cursor: pointer;
-    transition: background-color 0.3s;
+    transition: background-color 0.3s ease;
 }
 
 .facility-card:hover {
-    background-color: #e0e0e0;
+    background-color: #f0f0f0;
+}
+
+.facility-link {
+    color: #007bff;
+    text-decoration: none;
+    font-size: 0.9em;
+}
+  
+.facility-link:hover {
+    text-decoration: underline;
+}
+  
+.facility-card.selected {
+    background-color: #f0f8ff;
+    border-left: 4px solid #007bff;
 }
 
 

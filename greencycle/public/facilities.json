@@ -1,92 +1,112 @@
 [
     {
         "id": "1",
-        "name": "North Seattle Transfer Station",
-        "latitude": 47.6587,
-        "longitude": -122.3467,
+        "name": "North Transfer Station",
+        "latitude": 47.6498,
+        "longitude": -122.3419,
         "address": "1350 N 34th St, Seattle, WA 98103",
         "description": "Accepts a variety of recyclables including metals, plastics, and paper.",
-        "materials": ["Metal", "Plastic", "Paper"]
+        "materials": ["Metal", "Plastic", "Paper"],
+        "website": "https://www.seattle.gov/utilities/your-services/collection-and-disposal/transfer-stations/north-station",
+        "directions": "https://www.google.com/maps/dir/?api=1&destination=1350+N+34th+St,+Seattle,+WA+98103"
     },
     {
         "id": "2",
         "name": "South Transfer Station",
-        "latitude": 47.5475,
-        "longitude": -122.3191,
+        "latitude": 47.5303,
+        "longitude": -122.3308,
         "address": "130 S Kenyon St, Seattle, WA 98108",
         "description": "Offers recycling services for plastics, glass, and electronic waste.",
-        "materials": ["Plastic", "Glass", "E-waste"]
+        "materials": ["Plastic", "Glass", "E-waste"],
+        "website": "https://www.seattle.gov/utilities/your-services/collection-and-disposal/transfer-stations/south-station",
+        "directions": "https://www.google.com/maps/dir/?api=1&destination=130+S+Kenyon+St,+Seattle,+WA+98108"
     },
     {
         "id": "3",
-        "name": "Seattle Public Utilities - Hazardous Waste Collection",
-        "latitude": 47.6613,
-        "longitude": -122.3325,
+        "name": "North Household Hazardous Waste Facility",
+        "latitude": 47.7193,
+        "longitude": -122.3419,
         "address": "12550 Stone Ave N, Seattle, WA 98133",
         "description": "Collection site for hazardous materials like chemicals, batteries, and paint.",
-        "materials": ["Batteries", "Chemicals", "Paint"]
+        "materials": ["Batteries", "Chemicals", "Paint"],
+        "website": "https://www.hazwastehelp.org/",
+        "directions": "https://www.google.com/maps/dir/?api=1&destination=12550+Stone+Ave+N,+Seattle,+WA+98133"
     },
     {
         "id": "4",
-        "name": "CleanScapes Recycling Center",
+        "name": "Recology Store SoMa",
         "latitude": 47.5986,
         "longitude": -122.3327,
         "address": "117 S Main St, Seattle, WA 98104",
         "description": "Drop-off center for general recyclables, including cardboard and aluminum cans.",
-        "materials": ["Cardboard", "Aluminum", "Plastic"]
+        "materials": ["Cardboard", "Aluminum", "Plastic"],
+        "website": "https://www.recology.com/store/soma/",
+        "directions": "https://www.google.com/maps/dir/?api=1&destination=117+S+Main+St,+Seattle,+WA+98104"
     },
     {
         "id": "5",
-        "name": "Goodwill Seattle - Electronics Recycling",
-        "latitude": 47.6213,
-        "longitude": -122.3321,
+        "name": "Goodwill Seattle - Dearborn",
+        "latitude": 47.5952,
+        "longitude": -122.3078,
         "address": "1400 S Lane St, Seattle, WA 98144",
         "description": "Accepts various electronics and small appliances for recycling.",
-        "materials": ["E-waste", "Appliances"]
+        "materials": ["E-waste", "Appliances"],
+        "website": "https://seattlegoodwill.org/",
+        "directions": "https://www.google.com/maps/dir/?api=1&destination=1400+S+Lane+St,+Seattle,+WA+98144"
     },
     {
         "id": "6",
-        "name": "Total Reclaim Seattle",
-        "latitude": 47.5478,
-        "longitude": -122.3326,
+        "name": "Total Reclaim",
+        "latitude": 47.5793,
+        "longitude": -122.3253,
         "address": "2200 6th Ave S, Seattle, WA 98134",
         "description": "Specializes in recycling electronics and environmentally hazardous materials.",
-        "materials": ["Electronics", "Chemicals"]
+        "materials": ["Electronics", "Chemicals"],
+        "website": "https://www.totalreclaim.com/",
+        "directions": "https://www.google.com/maps/dir/?api=1&destination=2200+6th+Ave+S,+Seattle,+WA+98134"
     },
     {
         "id": "7",
-        "name": "Seattle Compost Facility",
-        "latitude": 47.6062,
-        "longitude": -122.3321,
-        "address": "7001 32nd Ave NE, Seattle, WA 98115",
+        "name": "Cedar Grove Composting",
+        "latitude": 47.4958,
+        "longitude": -122.2171,
+        "address": "17825 Cedar Grove Rd SE, Maple Valley, WA 98038",
         "description": "Facility for compostable materials including food waste and yard debris.",
-        "materials": ["Compost", "Yard Waste"]
+        "materials": ["Compost", "Yard Waste"],
+        "website": "https://cedar-grove.com/",
+        "directions": "https://www.google.com/maps/dir/?api=1&destination=17825+Cedar+Grove+Rd+SE,+Maple+Valley,+WA+98038"
     },
     {
         "id": "8",
         "name": "Recycling & Disposal Services",
-        "latitude": 47.6478,
-        "longitude": -122.3459,
-        "address": "1524 NW Leary Way, Seattle, WA 98107",
+        "latitude": 47.6639,
+        "longitude": -122.3773,
+        "address": "1440 NW Leary Way, Seattle, WA 98107",
         "description": "Accepts mixed recyclables and metal scrap.",
-        "materials": ["Metal", "Plastic", "Glass"]
+        "materials": ["Metal", "Plastic", "Glass"],
+        "website": "https://www.rdsseattle.com/",
+        "directions": "https://www.google.com/maps/dir/?api=1&destination=1440+NW+Leary+Way,+Seattle,+WA+98107"
     },
     {
         "id": "9",
-        "name": "Recology King County - Shoreline Recycling Center",
-        "latitude": 47.7517,
-        "longitude": -122.3489,
+        "name": "Shoreline Recycling & Transfer Station",
+        "latitude": 47.7469,
+        "longitude": -122.3477,
         "address": "2300 N 165th St, Shoreline, WA 98133",
         "description": "Recycling services for plastics, metals, and paper products.",
-        "materials": ["Plastic", "Metal", "Paper"]
+        "materials": ["Plastic", "Metal", "Paper"],
+        "website": "https://kingcounty.gov/depts/dnrp/solid-waste/facilities/shoreline-transfer.aspx",
+        "directions": "https://www.google.com/maps/dir/?api=1&destination=2300+N+165th+St,+Shoreline,+WA+98133"
     },
     {
         "id": "10",
-        "name": "University District Textiles Recycling",
+        "name": "Threadcycle - University District",
         "latitude": 47.6614,
         "longitude": -122.3139,
         "address": "5225 University Way NE, Seattle, WA 98105",
         "description": "Specializes in textile recycling including clothing and fabrics.",
-        "materials": ["Textiles", "Fabrics"]
+        "materials": ["Textiles", "Fabrics"],
+        "website": "https://kingcounty.gov/depts/dnrp/solid-waste/programs/threadcycle.aspx",
+        "directions": "https://www.google.com/maps/dir/?api=1&destination=5225+University+Way+NE,+Seattle,+WA+98105"
     }
 ]
