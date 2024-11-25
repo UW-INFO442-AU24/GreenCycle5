@@ -5,7 +5,7 @@ const Flashcard = ({ question, answer }) => {
     const [isFlipped, setIsFlipped] = useState(false);
 
     const handleClick = () => {
-        setIsFlipped(!isFlipped); alert('umi');
+        setIsFlipped(!isFlipped);
     };
 
     return (
