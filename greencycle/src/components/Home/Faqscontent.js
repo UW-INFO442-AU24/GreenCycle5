@@ -44,5 +44,5 @@ const faqsContent = [
     }
 ];
 
-// Export the FAQs content
+
 export default faqsContent;

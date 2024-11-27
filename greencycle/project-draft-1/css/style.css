@@ -306,14 +306,14 @@ body {
 
 /* Home Page */
 p {
-    text-align: left;
+    text-align: center;
 }
 
 a {
     display: block;
-    text-align: left;
+    text-align: center;
     margin-top: 20px;
-    color: #3b7a57;
+    color: blue;
 }
 
 /* Container for the FAQ section */

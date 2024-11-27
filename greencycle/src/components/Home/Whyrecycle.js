@@ -1,5 +1,5 @@
 import React from 'react';
-// import './WhyRecycle.css'; // Optional: Create a CSS file for styling if needed
+
 
 const Whyrecycle = () => {
     return (

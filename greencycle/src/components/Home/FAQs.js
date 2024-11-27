@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import faqsContent from './Faqscontent.js'; // Import the FAQ content
+import './FAQs.css';
 
 const FAQs = () => {
     // State to track which FAQ is open
@@ -8,9 +9,9 @@ const FAQs = () => {
     // Toggle the FAQ item (open/close)
     const toggleFAQ = (index) => {
         if (openIndex === index) {
-            setOpenIndex(null); // Close it if it's already open
+            setOpenIndex(null);
         } else {
-            setOpenIndex(index); // Open the clicked FAQ item
+            setOpenIndex(index);
         }
     };
 
