@@ -1,0 +1,241 @@
+/* Map Page */
+
+.leaflet-control-attribution {
+    padding: 2px 5px;
+    font-size: 10px;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 4px;
+    box-shadow: none;
+    display: inline-block;
+    width: auto;
+}
+
+.leaflet-control-attribution a {
+    display: inline;
+    margin-right: 3px;
+}
+
+.leaflet-bottom .leaflet-control-attribution {
+    left: 10px;
+    right: auto;
+}
+
+.leaflet-tooltip {
+    font-size: 12px;
+    padding: 10px;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    border-radius: 4px;
+}
+
+/* Overall container for map page */
+.main-container {
+    display: flex;
+    height: 100vh; /* Ensures it takes the full viewport height */
+    overflow: hidden; /* Prevents scrolling for the entire container */
+}
+
+/* Styling for the search bar container */
+.map-controls {
+    position: absolute;
+    top: 30px;
+    left: 200px;
+    z-index: 1000;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    width: 300px;
+}
+
+/* Search bar styling */
+.search-bar {
+    width: 100%;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+/* Positioning the autocomplete dropdown right below the search bar */
+.autocomplete-dropdown {
+    position: absolute;
+    background-color: white;
+    border: 1px solid #ccc;
+    width: calc(100% - 20px); /* Matches the width of the search bar */
+    max-height: 200px;
+    overflow-y: auto;
+    z-index: 1000;
+    margin-top: 5px;
+}
+
+.autocomplete-item {
+    padding: 10px;
+    cursor: pointer;
+    border-bottom: 1px solid #eee;
+}
+
+.autocomplete-item:last-child {
+    border-bottom: none;
+}
+
+.autocomplete-item:hover {
+    background-color: #f0f0f0;
+}
+
+/* Container for map and sidebar */
+.content-container {
+    display: flex;
+    flex: 1;
+    overflow: hidden;
+}
+
+/* Main map styling */
+.map {
+    flex: 1; /* Take up remaining space */
+    height: 100%; /* Full height */
+}
+
+/* Left Sidebar: Filters */
+/* Left Sidebar: Filters */
+.left-sidebar {
+    width: 10%; /* Adjust width as needed */
+    background-color: #ffffff; /* White background for a clean look */
+    padding: 20px; /* Add some padding for spacing */
+    box-shadow: 2px 0px 5px rgba(0, 0, 0, 0.1); /* Add a slight shadow */
+    overflow-y: auto; /* Allow scrolling for long content */
+    font-family: Arial, sans-serif; /* Clean font for readability */
+}
+
+.left-sidebar h3 {
+    margin-top: 0;
+    color: #333;
+    font-size: 18px;
+    font-weight: bold;
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+}
+
+.left-sidebar label {
+    display: block;
+    margin-bottom: 10px;
+    font-size: 14px;
+    color: #555;
+    cursor: pointer;
+}
+
+.left-sidebar input[type="checkbox"] {
+    margin-right: 8px;
+}
+
+.left-sidebar button {
+    background-color: #007bff; /* Blue button */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    padding: 10px;
+    width: 100%;
+    text-align: center;
+    margin-top: 20px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+/* Right Sidebar: Facility List */
+.right-sidebar {
+    width: 30%; /* Adjust width as needed */
+    background-color: #f8f8f8;
+    padding: 10px;
+    border-left: 1px solid #ccc;
+    box-shadow: -2px 0px 5px rgba(0, 0, 0, 0.1);
+    overflow-y: auto; /* Allow scrolling for long content */
+}
+
+/* Facility cards inside the right sidebar */
+.facility-card {
+    margin-bottom: 15px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.facility-card:hover {
+    background-color: #f0f0f0;
+}
+
+.facility-link {
+    color: #007bff;
+    text-decoration: none;
+    font-size: 0.9em;
+}
+  
+.facility-link:hover {
+    text-decoration: underline;
+}
+  
+.facility-card.selected {
+    background-color: #f0f8ff;
+    border-left: 4px solid #007bff;
+}
+
+/* Highlighted style for sidebar items */
+.facility-card.highlighted {
+    background-color: #e0e0e0; /* Change to desired highlight color */
+    cursor: pointer;
+}
+
+.location-button {
+    background-color: #8f8f8f;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.location-button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Responsive Design */
+@media (max-width: 992px) {
+    .left-sidebar {
+        width: 25%; /* Adjust for medium screens */
+    }
+
+    .right-sidebar {
+        width: 30%; /* Adjust for medium screens */
+    }
+}
+
+@media (max-width: 768px) {
+    .left-sidebar,
+    .right-sidebar {
+        display: none; /* Hide both sidebars for smaller devices */
+    }
+
+    .map {
+        width: 100%;
+        height: calc(100vh - 50px); /* Full map height when sidebars are hidden */
+    }
+
+    .map-controls {
+        width: 90%;
+        left: 5%; /* Center the search bar in smaller devices */
+    }
+}
+
+@media (max-width: 480px) {
+    .map-controls {
+        width: 95%;
+        left: 2.5%; /* Further center the search bar */
+    }
+
+    .map {
+        height: calc(100vh - 60px); /* Adjust height for search bar */
+    }
+}
