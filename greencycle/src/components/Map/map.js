@@ -77,8 +77,6 @@ const MapComponent = () => {
     const [filteredFacilities, setFilteredFacilities] = useState([]);
     const [selectedFacilityId, setSelectedFacilityId] = useState(null);
     const [searchQuery, setSearchQuery] = useState('');
-    const [autocompleteResults, setAutocompleteResults] = useState([]);
-    const [showAutocomplete, setShowAutocomplete] = useState(false);
     const [userLocation, setUserLocation] = useState(null);
     const searchInputRef = useRef(null);
 
@@ -105,6 +103,27 @@ const MapComponent = () => {
             .catch((error) => console.error('Error fetching facility data:', error));
     }, []);
 
+    // Filter facilities based on search query (name or materials)
+    useEffect(() => {
+        const lowerCaseQuery = searchQuery.toLowerCase();
+
+        const filtered = facilities.filter((facility) => {
+            // Check if facility matches search query by name or materials
+            const matchesQuery =
+                facility.name.toLowerCase().includes(lowerCaseQuery) ||
+                facility.materials.some((material) => material.toLowerCase().includes(lowerCaseQuery));
+
+            // Check if facility matches selected materials
+            const matchesMaterials =
+                selectedMaterials.length === 0 ||
+                selectedMaterials.every((material) => facility.materials.includes(material));
+
+            return matchesQuery && matchesMaterials;
+        });
+
+        setFilteredFacilities(filtered);
+    }, [searchQuery, selectedMaterials, facilities]);
+
     // Filter facilities based on selected materials
     useEffect(() => {
         let filtered = facilities;
@@ -118,6 +137,11 @@ const MapComponent = () => {
         setFilteredFacilities(filtered);
     }, [selectedMaterials, facilities]);
 
+    // Handle search input change
+    const handleSearchInputChange = (e) => {
+        setSearchQuery(e.target.value);
+    };
+
     // Handle material filter change
     const handleMaterialFilterChange = (material) => {
         const updatedMaterials = selectedMaterials.includes(material)
@@ -125,6 +149,35 @@ const MapComponent = () => {
             : [...selectedMaterials, material];
         setSelectedMaterials(updatedMaterials);
     };
+
+    // Highlight selected facility and sort nearby ones
+    const highlightFacility = (clickedFacility) => {
+        const sortedFacilities = [...facilities].sort((a, b) => {
+            const distA = calculateDistance(
+                clickedFacility.latitude,
+                clickedFacility.longitude,
+                a.latitude,
+                a.longitude
+            );
+            const distB = calculateDistance(
+                clickedFacility.latitude,
+                clickedFacility.longitude,
+                b.latitude,
+                b.longitude
+            );
+            return distA - distB;
+        });
+
+        const updatedList = [clickedFacility, ...sortedFacilities.filter((f) => f.id !== clickedFacility.id)];
+        setFilteredFacilities(updatedList);
+    };
+
+    // Handle marker click
+    const handleMarkerClick = (facility) => {
+        setSelectedFacilityId(facility.id);
+        highlightFacility(facility);
+    };
+
 
     // Locate user and sort facilities by proximity
     const getUserLocation = () => {
@@ -151,6 +204,24 @@ const MapComponent = () => {
     };
 
     const selectedFacility = facilities.find((facility) => facility.id === selectedFacilityId);
+
+    useEffect(() => {
+        const handleResize = () => {
+            const mapElement = document.querySelector('.leaflet-container');
+            if (mapElement) {
+                mapElement.style.width = '100%';
+                mapElement.style.height = '100%';
+            }
+        };
+    
+        window.addEventListener('resize', handleResize);
+        handleResize();
+    
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
+    }, []);
+    
 
     return (
         <div className="main-container">
@@ -225,9 +296,9 @@ const MapComponent = () => {
                 <div className="map-controls" ref={searchInputRef}>
                     <input
                         type="text"
-                        placeholder="Search facilities..."
+                        placeholder="Search facilities or materials..."
                         value={searchQuery}
-                        onChange={(e) => setSearchQuery(e.target.value)}
+                        onChange={handleSearchInputChange}
                         className="search-bar"
                     />
                     <button onClick={getUserLocation} className="location-button">
@@ -236,8 +307,11 @@ const MapComponent = () => {
                 </div>
 
                 {/* Map */}
-                <MapContainer center={[47.6567, -122.3166]} zoom={13} className="map">
-                    <TileLayer
+                <MapContainer center={[47.6567, -122.3166]} zoom={13} className="map"
+                whenReady={(map) => {
+        map.target.invalidateSize(); // Ensures the map adjusts to its container
+    }}>
+                     <TileLayer
                         attribution="&copy; <a href='https://www.openstreetmap.org/copyright'>OpenStreetMap</a> contributors"
                         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                     />
@@ -249,7 +323,7 @@ const MapComponent = () => {
                             position={[facility.latitude, facility.longitude]}
                             icon={facilityIcon}
                             eventHandlers={{
-                                click: () => setSelectedFacilityId(facility.id),
+                                click: () => handleMarkerClick(facility),
                             }}
                         >
                             <Tooltip direction="top" offset={[0, -10]} opacity={1}>

@@ -253,20 +253,5 @@
         "contact": "(206) 332-7700",
         "website": "https://www.republicservices.com/",
         "directions": "https://www.google.com/maps/dir/?api=1&destination=1900+Occidental+Ave+S,+Seattle,+WA+98134"
-    },
-    {
-        "id": "24",
-        "name": "E-Cycle Washington Drop-Off Site",
-        "latitude": 47.6595,
-        "longitude": -122.3227,
-        "address": "435 NE Northgate Way, Seattle, WA 98125",
-        "description": "Free recycling for electronics like TVs, computers, and monitors.",
-        "materials": ["Electronics", "TVs", "Computers", "Monitors"],
-        "county": "King",
-        "city": "Seattle",
-        "hours": "Mon-Sat: 10:00 AM - 5:00 PM",
-        "contact": "(800) RECYCLE",
-        "website": "https://ecy.wa.gov/programs/swfa/eproductrecycle/",
-        "directions": "https://www.google.com/maps/dir/?api=1&destination=435+NE+Northgate+Way,+Seattle,+WA+98125"
     }
 ]
