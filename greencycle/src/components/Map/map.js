@@ -224,7 +224,7 @@ const MapComponent = () => {
     
 
     return (
-        <div className="main-container">
+        <div id="map-page" className="main-container">
             {/* Sidebar */}
             <div className="left-sidebar">
                 <h3>Filter by Materials</h3>
@@ -246,49 +246,49 @@ const MapComponent = () => {
             </div>
 
              {/* Right Sidebar: Facility List */}
-    <div className="right-sidebar">
-        <h3>Recycling Facilities</h3>
-        {filteredFacilities.length > 0 ? (
-            filteredFacilities.map((facility) => {
-                const distance = userLocation
-                    ? calculateDistance(
-                          userLocation[0],
-                          userLocation[1],
-                          facility.latitude,
-                          facility.longitude
-                      ).toFixed(2)
-                    : null;
-                return (
-                    <div
-                        key={facility.id}
-                        className={`facility-card ${
-                            selectedFacilityId === facility.id ? 'selected' : ''
-                        }`}
-                        onClick={() => setSelectedFacilityId(facility.id)}
-                    >
-                        <h4>{facility.name}</h4>
-                        <p>{facility.address}</p>
-                        <p>{facility.description}</p>
-                        {distance && <p>Distance: {distance} miles</p>}
-                        <p>
-                            <strong>Hours:</strong> {facility.hours}
-                        </p>
-                        <p>
-                            <strong>Contact:</strong> {facility.contact}
-                        </p>
-                        <a href={facility.website} target="_blank" rel="noopener noreferrer">
-                            Visit Website
-                        </a>
-                        <a href={facility.directions} target="_blank" rel="noopener noreferrer">
-                            Get Directions
-                        </a>
-                    </div>
-                );
-            })
-        ) : (
-            <p>No facilities match your search criteria.</p>
-        )}
-    </div>
+            <div className="right-sidebar">
+                <h3>Recycling Facilities</h3>
+                {filteredFacilities.length > 0 ? (
+                    filteredFacilities.map((facility) => {
+                        const distance = userLocation
+                            ? calculateDistance(
+                                userLocation[0],
+                                userLocation[1],
+                                facility.latitude,
+                                facility.longitude
+                            ).toFixed(2)
+                            : null;
+                        return (
+                            <div
+                                key={facility.id}
+                                className={`facility-card ${
+                                    selectedFacilityId === facility.id ? 'selected' : ''
+                                }`}
+                                onClick={() => setSelectedFacilityId(facility.id)}
+                            >
+                                <h4>{facility.name}</h4>
+                                <p>{facility.address}</p>
+                                <p>{facility.description}</p>
+                                {distance && <p>Distance: {distance} miles</p>}
+                                <p>
+                                    <strong>Hours:</strong> {facility.hours}
+                                </p>
+                                <p>
+                                    <strong>Contact:</strong> {facility.contact}
+                                </p>
+                                <a href={facility.website} target="_blank" rel="noopener noreferrer">
+                                    Visit Website
+                                </a>
+                                <a href={facility.directions} target="_blank" rel="noopener noreferrer">
+                                    Get Directions
+                                </a>
+                            </div>
+                        );
+                    })
+                ) : (
+                    <p>No facilities match your search criteria.</p>
+                )}
+            </div>
 
             {/* Map and Search */}
             <div className="content-container">

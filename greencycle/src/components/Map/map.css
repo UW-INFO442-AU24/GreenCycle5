@@ -1,20 +1,13 @@
 
-body {
-    font-family: Arial, sans-serif;
-    height: 100vh;
-    width: flex;
-    padding-right: 0;
-    margin-right: 0;
-    overflow: hidden;
-    background-color: #f4f4f4;
-}
-
-
 /* Main container for three columns */
+
+
 .main-container {
     display: flex;
     height: 100vh;
-    overflow: visible; /* Prevent scrolling */
+    overflow: hidden; /* Prevent scrolling */
+    margin-right: 0;
+    padding-right: 0;
 }
 
 /* Left Sidebar */
@@ -163,7 +156,6 @@ body {
 /* Map container */
 .content-container {
     flex: 1;
-    display: flex;
     position: relative;
     height: 100%;
     overflow: hidden;
@@ -175,52 +167,53 @@ body {
     width: 100%;  /* Full width of its container */
 }
 
-/* Search bar container */
 .map-controls {
     position: absolute;
-    top: 20px;
+    top: 10px;
     left: 50%;
     transform: translateX(-50%);
     background: white;
-    padding: 10px;
+    padding: 8px;
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
     z-index: 1000;
-    width: 40%;
+    display: flex;
+    justify-content: space-between; /* Distributes space evenly between input and button */
+    width: 60%; /* Adjust width to your preference */
 }
 
-/* Search bar input */
 .search-bar {
-    flex: 1; 
-    padding: 10px;
+    flex: 1;
+    padding: 7px;
     border: 1px solid #ddd;
     border-radius: 4px;
     font-size: 14px;
+    margin-right: 10px; /* Space between input and button */
 }
 
-/* Location button */
 .location-button {
-    margin-left: 20px; 
-    padding: 10px;
+    padding: 10px 20px; /* Padding for button */
     background-color: #28a745;
     color: white;
     border: none;
     border-radius: 4px;
     cursor: pointer;
     font-size: 14px;
-    white-space: nowrap; 
+    white-space: nowrap;
+    transition: background-color 0.3s ease;
 }
 
 .location-button:hover {
     background-color: #218838;
 }
 
+
 .leaflet-control-attribution {
     padding: 2px 5px;
     font-size: 10px;
     background-color: rgba(255, 255, 255, 0.8);
     border-radius: 4px;
-    bottom: 120px; /* Adjust space from the bottom */
+    bottom: 1px; /* Adjust space from the bottom */
     box-shadow: none;
     display: inline-block;
     width: auto;

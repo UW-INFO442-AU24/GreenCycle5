@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import './Flashcard.css'; // We'll create the CSS file later
+import './Flashcard.css';
 
 const Flashcard = ({ question, answer }) => {
     const [isFlipped, setIsFlipped] = useState(false);
 
     const handleClick = () => {
-        setIsFlipped(!isFlipped); alert('umi');
+        setIsFlipped(!isFlipped);
     };
 
     return (

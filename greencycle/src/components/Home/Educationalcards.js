@@ -7,7 +7,7 @@ const EducationalCards = () => {
         { question: "What materials can be recycled?", answer: "Paper, plastic, glass, and metal are commonly recyclable materials." },
         { question: "How does recycling help the environment?", answer: "It reduces pollution, saves landfill space, and lowers energy consumption." },
         { question: "What happens if we don't recycle?", answer: "Waste piles up in landfills, and more resources are wasted." },
-        // Add more flashcards as needed
+
     ];
 
     return (

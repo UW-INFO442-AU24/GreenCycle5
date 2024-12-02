@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 function Quiz() {
-    // Correct Answers
+    // Correct Answers (for reference)
     const correctAnswers = {
         q1: "B",
         q2: "C",
@@ -174,10 +174,12 @@ function Quiz() {
         },
     ];
 
-    // State to track the user's answers
+    // State to track the user's answers, the current question index, and the screen state
     const [answers, setAnswers] = useState({});
     const [showResult, setShowResult] = useState(false);
-    const [questions, setQuestions] = useState([]);
+    const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
+    const [isQuizStarted, setIsQuizStarted] = useState(false);
+    const [questions, setQuestions] = useState([]); // Store shuffled questions
 
     const shuffleArray = (array) => {
         return array.map(value => ({ value, sort: Math.random() }))
@@ -186,19 +188,30 @@ function Quiz() {
     };
 
     useEffect(() => {
-        const shuffledQuestions = shuffleArray(questionsData);
-        const shuffledQuestionsWithAnswers = shuffledQuestions.map(question => ({
-            ...question,
-            answers: shuffleArray(question.answers)
-        }));
-        setQuestions(shuffledQuestionsWithAnswers);
-    }, []);
+        if (isQuizStarted) {
+            // Shuffle and set the questions once the quiz starts
+            const shuffledQuestions = shuffleArray(questionsData);
+            const shuffledQuestionsWithAnswers = shuffledQuestions.map(question => ({
+                ...question,
+                answers: shuffleArray(question.answers)
+            }));
+            setQuestions(shuffledQuestionsWithAnswers);
+        }
+    }, [isQuizStarted]);
 
     const handleAnswerChange = (questionIndex, selectedValue) => {
         setAnswers(prevAnswers => ({
             ...prevAnswers,
             [`q${questionIndex}`]: selectedValue
         }));
+    };
+
+    const handleNextQuestion = () => {
+        setCurrentQuestionIndex(prevIndex => Math.min(prevIndex + 1, questions.length - 1));
+    };
+
+    const handlePreviousQuestion = () => {
+        setCurrentQuestionIndex(prevIndex => Math.max(prevIndex - 1, 0));
     };
 
     const calculateScore = () => {
@@ -208,18 +221,22 @@ function Quiz() {
         questions.forEach((question, index) => {
             const selectedAnswer = answers[`q${index + 1}`];
 
+            const selectedAnswerText = question.answers.find(ans => ans.value === selectedAnswer)?.text;
+
             if (selectedAnswer === question.correct) {
                 score++;
                 results.push({
                     question: question.question,
-                    selected: selectedAnswer,
-                    correct: true
+                    selected: selectedAnswerText,
+                    correct: true,
+                    correctAnswerText: question.answers.find(ans => ans.value === question.correct).text
                 });
             } else {
                 results.push({
                     question: question.question,
-                    selected: selectedAnswer,
-                    correct: false
+                    selected: selectedAnswerText,
+                    correct: false,
+                    correctAnswerText: question.answers.find(ans => ans.value === question.correct).text
                 });
             }
         });
@@ -231,28 +248,59 @@ function Quiz() {
         });
     };
 
-    const renderQuiz = () => {
-        return questions.map((question, index) => (
-            <div key={index} className="question">
-                <h3>{`${index + 1}. ${question.question}`}</h3>
-                <ul className="answers">
-                    {question.answers.map(answer => (
-                        <li key={answer.value}>
-                            <label>
-                                <input
-                                    type="radio"
-                                    name={`q${index + 1}`}
-                                    value={answer.value}
-                                    onChange={() => handleAnswerChange(index + 1, answer.value)}
-                                    checked={answers[`q${index + 1}`] === answer.value}
-                                />
-                                {answer.text}
-                            </label>
-                        </li>
-                    ))}
-                </ul>
+    const renderWelcomeScreen = () => {
+        return (
+            <div id="welcome-screen">
+                <h1>Recycling Quiz</h1>
+                <p>Test your knowledge on recycling!</p>
+                <button onClick={() => setIsQuizStarted(true)}>Start Quiz</button>
             </div>
-        ));
+        );
+    };
+
+    const renderQuiz = () => {
+        if (!questions || questions.length === 0) {
+            return <div>Loading quiz...</div>;
+        }
+
+        const question = questions[currentQuestionIndex];
+
+        return (
+            <div id="quiz-section">
+                <h1>Recycling Quiz</h1>
+                <div className="question">
+                    <h3>{`${currentQuestionIndex + 1}. ${question.question}`}</h3>
+                    <ul className="answers">
+                        {question.answers.map(answer => (
+                            <li key={answer.value}>
+                                <label>
+                                    <input
+                                        type="radio"
+                                        name={`q${currentQuestionIndex + 1}`}
+                                        value={answer.value}
+                                        onChange={() => handleAnswerChange(currentQuestionIndex + 1, answer.value)}
+                                        checked={answers[`q${currentQuestionIndex + 1}`] === answer.value}
+                                    />
+                                    {answer.text}
+                                </label>
+                            </li>
+                        ))}
+                    </ul>
+                </div>
+
+                <div className="navigation">
+                    {currentQuestionIndex > 0 && (
+                        <button onClick={handlePreviousQuestion}>Previous</button>
+                    )}
+                    {currentQuestionIndex < questions.length - 1 && (
+                        <button onClick={handleNextQuestion}>Next</button>
+                    )}
+                    {currentQuestionIndex === questions.length - 1 && (
+                        <button onClick={calculateScore}>Submit</button>
+                    )}
+                </div>
+            </div>
+        );
     };
 
     const renderResult = () => {
@@ -266,28 +314,41 @@ function Quiz() {
                             <strong>{result.correct ? 'Correct' : 'Incorrect'}:</strong> {result.question}
                             <br />
                             Your answer: {result.selected}
+                            {result.correct ? null : (
+                                <>
+                                    <br />
+                                    <strong>Correct answer:</strong> {result.correctAnswerText}
+                                </>
+                            )}
                         </li>
                     ))}
                 </ul>
-                <button onClick={() => setShowResult(false)}>Close</button>
+                <button onClick={resetQuiz}>Close</button>
             </div>
         );
     };
 
+    const resetQuiz = () => {
+        setIsQuizStarted(false); // Return to welcome screen
+        setAnswers({}); // Clear answers
+        setShowResult(false); // Hide result popup
+        setCurrentQuestionIndex(0); // Reset to first question
+        setQuestions([]); // Clear questions
+    };
+
     return (
-        <div id="quiz-section">
-            <h1>Recycling Quiz</h1>
-
-            <form id="quizForm">{renderQuiz()}</form>
-
-            <button type="button" className="submit-btn" onClick={calculateScore}>
-                Submit
-            </button>
-
-            {showResult && (
-                <div className="overlay">
-                    {renderResult()}
-                </div>
+        <div id="quiz-container">
+            {isQuizStarted ? (
+                <>
+                    {renderQuiz()}
+                    {showResult && (
+                        <div className="overlay">
+                            {renderResult()}
+                        </div>
+                    )}
+                </>
+            ) : (
+                renderWelcomeScreen()
             )}
         </div>
     );
