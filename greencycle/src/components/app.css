@@ -97,33 +97,55 @@ main {
     background-color: #f4f7f6;
     display: flex;
     flex-direction: column;
-    align-items: center; /* Center content */
+    align-items: center;
 }
 
 /* Community Header */
-.community-header h1 {
-    font-size: 3em;
-    color: #3b7a57;
-    font-weight: bold;
-    text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.1);
-    margin-bottom: 20px;
-    line-height: 1.2;
-    background: linear-gradient(to right, #3b7a57, #2d6a4f);
-    color: transparent;
-    transition: transform 0.3s ease, color 0.3s ease;
-}
-
-.community-header h1:hover {
-    transform: translateY(-5px);
+.community-header {
+    background-image: url('/public/images/Citizens-recycling.jpeg');
+    background-size: cover; 
+    background-position: center;
     color: #fff;
+    padding: 40px 30px;
+    text-align: center;
+    border-radius: 15px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+    margin-bottom: 40px;
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
 }
 
-/* Events Section */
+.community-header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.4); 
+    border-radius: 15px;
+    z-index: -1;
+}
+
+.community-header h3 {
+    font-size: 1.5em;
+    color: #fff;
+    line-height: 1.5;
+    max-width: 700px;
+    margin: 0 auto;
+    font-weight: normal;
+    margin-bottom: 20px;
+}
+
+
 .community-events, .community-articles {
     width: 80%;
     max-width: 1200px;
     margin-bottom: 40px;
-    text-align: center; /* Center content */
+    text-align: center;
 }
 
 .community-events h2, .community-articles h2 {
@@ -140,7 +162,6 @@ main {
     align-items: center;
 }
 
-/* Event and Article Cards */
 .event-card, .article-card {
     background-color: #fff;
     border: 1px solid #ddd;
@@ -153,16 +174,15 @@ main {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    text-align: center; /* Align text in center */
+    text-align: center;
 }
 
 .event-card, .article-card {
     width: 100%;
-    max-width: 300px; /* Uniform width for all cards */
-    margin: 10px auto; /* Center cards horizontally */
+    max-width: 300px;
+    margin: 10px auto;
 }
 
-/* Hover Effects */
 .event-card:hover, .article-card:hover {
     box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
     transform: translateY(-5px);
@@ -181,7 +201,6 @@ main {
     margin-bottom: 15px;
 }
 
-/* Button Styling */
 .event-card button, .article-card button {
     background-color: #3b7a57;
     color: white;
@@ -197,7 +216,7 @@ main {
     background-color: #2d6a4f;
 }
 
-/* Event Cards Horizontal Scroll */
+/* Event & Article Cards Horizontal Scroll */
 #event-list {
     display: flex;
     overflow-x: auto;
@@ -205,8 +224,44 @@ main {
     padding: 10px 0;
 }
 
+
 #event-list .event-card {
     flex-shrink: 0;
+}
+
+
+.community-articles {
+    display: flex;
+    overflow-x: auto;
+    gap: 20px;
+    padding: 10px 0;
+    justify-content: flex-start;
+    scroll-behavior: smooth; 
+    scroll-padding-left: 0;
+}
+
+.article-card {
+    flex-shrink: 0;
+    scroll-snap-align: start;
+    width: 300px;
+    margin: 10px 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    text-align: center;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+}
+
+
+.article-card:hover {
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+    transform: translateY(-5px);
 }
 
 
