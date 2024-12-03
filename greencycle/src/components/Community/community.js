@@ -3,27 +3,27 @@ import React, { useState } from 'react';
 export default function Community(props) {
     // Manage details for events and articles
     const [eventDetails, setEventDetails] = useState(null);
-    const [articleDetails, setArticleDetails] = useState(null);
+    const [filter, setFilter] = useState("all");
 
     // Event details (can be dynamically loaded)
     const events = [
-        { id: 1, title: "Beach Cleanup Day", date: "March 15, 2024", location: "Puget Sound Beach", description: "Join the community for a beach cleanup to keep our shores clean. Supplies provided!" },
-        // Add more events as needed
+        { id: 1, title: "E-Waste Recycling Event", date: "December 7, 2024", time: "11 am - 2 pm", location: "InterConnection, North 35th St 1121 Seattle", county: "king", description: "Bring your electronics to recycle for free! Laptops, desktops, TVs, phones, and much more are accepted." },
+        { id: 2, title: "Free Drive Thru Event", date: "December 14, 2024", time: "10 am - 2 pm", location: "South King Tool Library, 1700 S 340th St Federal Way", county: "king", description: "Residents are able to drop off up to 3 mattresses for free, they are also offering free document shredding!" },
+        { id: 3, title: "Scouting For Trees", date: "January 4, 2025", time: "10 am - 2 pm", location: "Pick Up (Must be in Federal Way city limits)", county: "king", description: "Register your holiday tree for PICK UP." },
     ];
 
     // Articles details (can be dynamically loaded)
     const articles = [
-        { id: 1, title: "5 Simple Ways to Reduce Plastic Use", description: "Learn how to minimize plastic waste in your daily life with these easy tips.", content: "Detailed content about reducing plastic use..." },
-        // Can add more articles
+        { id: 1, title: "Recycle Right. It Matters.", description: "Learn the standards for recycling within the Seattle community.", url: "https://seattle.gov/utilities/your-services/collection-and-disposal/recycling/recycle-right"},
+        { id: 2, title: "Top 5 Benefits of Recycling", description: "Explore the positive impact recycling has on the environment and community.", url: "https://example.com/recycling-benefits" },
     ];
 
-    
-    const showEventDetails = (event) => {
-        setEventDetails(event);
-    };
+    // Filter events based on selected county
+    const filteredEvents = filter === "all" ? events : events.filter(event => event.county === filter);
 
-    const showArticleDetails = (article) => {
-        setArticleDetails(article);
+    // Handle filter change
+    const handleFilterChange = (event) => {
+        setFilter(event.target.value);
     };
 
     return (
@@ -37,14 +37,26 @@ export default function Community(props) {
                 {/* Events Section */}
                 <section className="community-events">
                     <h2>Upcoming Recycling Events</h2>
-                    {events.map(event => (
-                        <div key={event.id} className="event-card">
-                            <h3>{event.title}</h3>
-                            <p><strong>Date:</strong> {event.date}</p>
-                            <p><strong>Location:</strong> {event.location}</p>
-                            <button onClick={() => showEventDetails(event)}>More Info</button>
-                        </div>
-                    ))}
+                    <div className="filter-container">
+                        <label htmlFor="event-filter">Filter by County:</label>
+                        <select id="event-filter" onChange={handleFilterChange}>
+                            <option value="all">All</option>
+                            <option value="king">King County</option>
+                            <option value="pierce">Pierce County</option>
+                            <option value="snohomish">Snohomish County</option>
+                        </select>
+                    </div>
+                    <div id="event-list">
+                        {filteredEvents.map(event => (
+                            <div key={event.id} className="event-card">
+                                <h3>{event.title}</h3>
+                                <p><strong>Date:</strong> {event.date}</p>
+                                <p><strong>Time:</strong> {event.time}</p>
+                                <p><strong>Location:</strong> {event.location}</p>
+                                <button onClick={() => setEventDetails(event)}>More Info</button>
+                            </div>
+                        ))}
+                    </div>
                 </section>
 
                 {/* Articles Section */}
@@ -54,7 +66,9 @@ export default function Community(props) {
                         <div key={article.id} className="article-card">
                             <h3>{article.title}</h3>
                             <p>{article.description}</p>
-                            <button onClick={() => showArticleDetails(article)}>Read More</button>
+                            <a href={article.url} target="_blank" rel="noopener noreferrer">
+                                <button>Read More</button>
+                            </a>
                         </div>
                     ))}
                 </section>
@@ -69,19 +83,10 @@ export default function Community(props) {
                         <button onClick={() => setEventDetails(null)}>Close</button>
                     </div>
                 )}
-
-                {/* Article Details Modal */}
-                {articleDetails && (
-                    <div className="modal">
-                        <h2>{articleDetails.title}</h2>
-                        <p>{articleDetails.content}</p>
-                        <button onClick={() => setArticleDetails(null)}>Close</button>
-                    </div>
-                )}
             </main>
 
             <footer>
-                <small>&copy; 2024 Green Cycle 5</small>
+                <small>&copy; 2024 GreenCycle</small>
             </footer>
         </div>
     );
