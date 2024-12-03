@@ -30,7 +30,7 @@ GreenCycle's mission is to educate Puget Sound residents on proper recycling pra
     * Map
 
 * Learning Quiz
-    * "How much do you know about recyling?"
+    * "How much do you know about recycling?"
 
 
 
