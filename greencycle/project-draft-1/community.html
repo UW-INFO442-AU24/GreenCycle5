@@ -35,24 +35,37 @@
         <!-- Events Section -->
         <section class="community-events">
             <h2>Upcoming Recycling Events</h2>
-            <div class="event-card">
-                <h3>Beach Cleanup Day</h3>
-                <p><strong>Date:</strong> March 15, 2024</p>
-                <p><strong>Location:</strong> Puget Sound Beach</p>
-                <button onclick="showEventDetails()">More Info</button>
+            <div class="filter-container">
+                <label for="event-filter">Filter by County:</label>
+                <select id="event-filter" onchange="filterEvents()">
+                    <option value="all">All</option>
+                    <option value="king">King County</option>
+                    <option value="pierce">Pierce County</option>
+                    <option value="snohomish">Snohomish County</option>
+                </select>
             </div>
-            <!-- Additional events can go here -->
+            <div id="event-list">
+                <!-- Event cards will be rendered here -->
+            </div>
         </section>
 
         <!-- Articles Section -->
         <section class="community-articles">
             <h2>Recycling Tips & Articles</h2>
             <div class="article-card">
-                <h3>5 Simple Ways to Reduce Plastic Use</h3>
-                <p>Learn how to minimize plastic waste in your daily life with these easy tips.</p>
-                <button onclick="showArticleDetails()">Read More</button>
+                <h3>How to Start Recycling at Home</h3>
+                <p>Learn tips and tricks to begin recycling in your household effectively.</p>
+                <a href="https://example.com/start-recycling" target="_blank">
+                    <button>Learn More</button>
+                </a>
             </div>
-            <!-- Additional articles can go here -->
+            <div class="article-card">
+                <h3>Top 5 Benefits of Recycling</h3>
+                <p>Explore the positive impact recycling has on the environment and community.</p>
+                <a href="https://example.com/recycling-benefits" target="_blank">
+                    <button>Learn More</button>
+                </a>
+            </div>
         </section>
     </main>
 
@@ -60,3 +73,7 @@
         <small>&copy; 2024 GreeCycle</small>
     </footer>
 
+    <script src="js/community.js"></script>
+
+</body>
+</html>

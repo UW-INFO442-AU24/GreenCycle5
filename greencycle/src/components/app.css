@@ -94,47 +94,100 @@ h1 {
 /* Community Page */
 main {
     padding: 20px;
+    background-color: #f4f7f6;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center content */
 }
 
+/* Community Header */
+.community-header h1 {
+    font-size: 3em;
+    color: #3b7a57;
+    font-weight: bold;
+    text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    line-height: 1.2;
+    background: linear-gradient(to right, #3b7a57, #2d6a4f);
+    color: transparent;
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.community-header h1:hover {
+    transform: translateY(-5px);
+    color: #fff;
+}
+
+/* Events Section */
 .community-events, .community-articles {
-    margin-bottom: 30px;
+    width: 80%;
+    max-width: 1200px;
+    margin-bottom: 40px;
+    text-align: center; /* Center content */
 }
 
 .community-events h2, .community-articles h2 {
-    font-size: 1.5em;
+    font-size: 2em;
     color: #2d6a4f;
+    margin-bottom: 20px;
+}
+
+/* Filter Container */
+.filter-container {
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Event and Article Cards */
+.event-card, .article-card {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    margin-bottom: 15px;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    text-align: center; /* Align text in center */
 }
 
 .event-card, .article-card {
-    background-color: white;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    padding: 15px;
-    margin-bottom: 15px;
-    transition: all 0.3s ease-in-out;
+    width: 100%;
+    max-width: 300px; /* Uniform width for all cards */
+    margin: 10px auto; /* Center cards horizontally */
 }
 
+/* Hover Effects */
 .event-card:hover, .article-card:hover {
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
     transform: translateY(-5px);
 }
 
+/* Card Title and Text */
 .event-card h3, .article-card h3 {
-    font-size: 1.2em;
+    font-size: 1.5em;
     color: #333;
+    margin-bottom: 10px;
 }
 
 .event-card p, .article-card p {
     font-size: 1em;
     color: #555;
+    margin-bottom: 15px;
 }
 
+/* Button Styling */
 .event-card button, .article-card button {
     background-color: #3b7a57;
     color: white;
-    border: none;
     padding: 10px;
     border-radius: 5px;
+    border: none;
     cursor: pointer;
     font-size: 1em;
     margin-top: 10px;
@@ -142,6 +195,18 @@ main {
 
 .event-card button:hover, .article-card button:hover {
     background-color: #2d6a4f;
+}
+
+/* Event Cards Horizontal Scroll */
+#event-list {
+    display: flex;
+    overflow-x: auto;
+    gap: 20px;
+    padding: 10px 0;
+}
+
+#event-list .event-card {
+    flex-shrink: 0;
 }
 
 
