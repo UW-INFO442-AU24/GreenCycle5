@@ -10,6 +10,9 @@ export default function About(props) {
                 Confusion on varying recycling rules as well as lack of knowledge on where to deposit
                 recyclable items can discourage people from contributing. That's why we have made King County
                 recycling information available in this singular platform.</p>
+            <h1>Our Team:</h1>
+            <p>Kevin Nguyen, Carl Searle, Kaylina Saetern, Paul Gialis, Jayden Set</p>
+            <iframe id="recycling" width="600" height="415" src="https://www.youtube.com/embed/b7GMpjx2jDQ"></iframe>
         </div>
     );
 }
