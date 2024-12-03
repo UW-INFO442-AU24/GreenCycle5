@@ -84,6 +84,7 @@ const MapComponent = () => {
     const [materials, setMaterials] = useState([]); // List of unique materials
     const [selectedMaterials, setSelectedMaterials] = useState([]);
 
+
     // Fetch facilities data and process it
     useEffect(() => {
         fetch('/facilities.json')
@@ -226,6 +227,11 @@ const MapComponent = () => {
     };
 
     const selectedFacility = facilities.find((facility) => facility.id === selectedFacilityId);
+
+
+    const [showRightSidebar, setShowRightSidebar] = useState(true);
+    const [showLeftSidebar, setShowLeftSidebar] = useState(true);
+
 
     return (
         <div id="map-page" className="main-container">
