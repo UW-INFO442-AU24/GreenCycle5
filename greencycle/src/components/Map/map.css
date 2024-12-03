@@ -151,6 +151,30 @@
     background-color: #bbb;
 }
 
+.pagination-controls {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.pagination-controls button {
+    padding: 10px;
+    margin: 0 5px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.pagination-controls button:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+}
+
+.pagination-controls span {
+    align-self: center;
+}
+
 /* Map container */
 .content-container {
     flex: 1;
@@ -202,7 +226,7 @@
 }
 
 .location-button:hover {
-    background-color: #218838;
+    background-color: #4CAF50;
 }
 
 

@@ -79,7 +79,8 @@ const MapComponent = () => {
     const [searchQuery, setSearchQuery] = useState('');
     const [userLocation, setUserLocation] = useState(null);
     const searchInputRef = useRef(null);
-
+    const [currentPage, setCurrentPage] = useState(1); // Start on page 1
+    const [facilitiesPerPage] = useState(10); // Show 10 facilities per page
     const [materials, setMaterials] = useState([]); // List of unique materials
     const [selectedMaterials, setSelectedMaterials] = useState([]);
 
@@ -106,36 +107,54 @@ const MapComponent = () => {
     // Filter facilities based on search query (name or materials)
     useEffect(() => {
         const lowerCaseQuery = searchQuery.toLowerCase();
-
         const filtered = facilities.filter((facility) => {
-            // Check if facility matches search query by name or materials
-            const matchesQuery =
+            return (
                 facility.name.toLowerCase().includes(lowerCaseQuery) ||
-                facility.materials.some((material) => material.toLowerCase().includes(lowerCaseQuery));
-
-            // Check if facility matches selected materials
-            const matchesMaterials =
-                selectedMaterials.length === 0 ||
-                selectedMaterials.every((material) => facility.materials.includes(material));
-
-            return matchesQuery && matchesMaterials;
+                facility.materials.some((material) => material.toLowerCase().includes(lowerCaseQuery))
+            );
         });
 
-        setFilteredFacilities(filtered);
-    }, [searchQuery, selectedMaterials, facilities]);
-
-    // Filter facilities based on selected materials
-    useEffect(() => {
-        let filtered = facilities;
-
+        // Apply filtering for selected materials as well
+        let filteredByMaterials = filtered;
         if (selectedMaterials.length > 0) {
-            filtered = filtered.filter((facility) =>
+            filteredByMaterials = filtered.filter((facility) =>
                 selectedMaterials.every((mat) => facility.materials.includes(mat))
             );
         }
 
-        setFilteredFacilities(filtered);
-    }, [selectedMaterials, facilities]);
+        setFilteredFacilities(filteredByMaterials);
+    }, [searchQuery, selectedMaterials, facilities]);
+
+    // Pagination Logic
+    const indexOfLastFacility = currentPage * facilitiesPerPage;
+    const indexOfFirstFacility = indexOfLastFacility - facilitiesPerPage;
+    const currentFacilities = filteredFacilities.slice(indexOfFirstFacility, indexOfLastFacility);
+    const rightSidebarRef = useRef(null);
+
+
+    useEffect(() => {
+        if (rightSidebarRef.current) {
+            rightSidebarRef.current.scrollTop = 0; // Scroll the right sidebar to the top
+        }
+    }, [currentPage]);
+    
+    
+
+    // Pagination Functions
+    const nextPage = () => {
+        if (currentPage < Math.ceil(filteredFacilities.length / facilitiesPerPage)) {
+            setCurrentPage(currentPage + 1);
+        }
+    };
+
+    const prevPage = () => {
+        if (currentPage > 1) {
+            setCurrentPage(currentPage - 1);
+        }
+    };
+        
+
+
 
     // Handle search input change
     const handleSearchInputChange = (e) => {
@@ -150,8 +169,15 @@ const MapComponent = () => {
         setSelectedMaterials(updatedMaterials);
     };
 
-    // Highlight selected facility and sort nearby ones
-    const highlightFacility = (clickedFacility) => {
+    // Handle marker click
+    const handleMarkerClick = (facility) => {
+        setSelectedFacilityId(facility.id);
+        reorderFacilitiesByProximity(facility);
+    };
+
+    // Reorder facilities by proximity and highlight the selected facility
+    const reorderFacilitiesByProximity = (clickedFacility) => {
+        // Sort the facilities by distance from the clicked facility
         const sortedFacilities = [...facilities].sort((a, b) => {
             const distA = calculateDistance(
                 clickedFacility.latitude,
@@ -168,15 +194,11 @@ const MapComponent = () => {
             return distA - distB;
         });
 
+        // Move the clicked facility to the top and set the updated list
         const updatedList = [clickedFacility, ...sortedFacilities.filter((f) => f.id !== clickedFacility.id)];
         setFilteredFacilities(updatedList);
     };
 
-    // Handle marker click
-    const handleMarkerClick = (facility) => {
-        setSelectedFacilityId(facility.id);
-        highlightFacility(facility);
-    };
 
 
     // Locate user and sort facilities by proximity
@@ -205,24 +227,6 @@ const MapComponent = () => {
 
     const selectedFacility = facilities.find((facility) => facility.id === selectedFacilityId);
 
-    useEffect(() => {
-        const handleResize = () => {
-            const mapElement = document.querySelector('.leaflet-container');
-            if (mapElement) {
-                mapElement.style.width = '100%';
-                mapElement.style.height = '100%';
-            }
-        };
-    
-        window.addEventListener('resize', handleResize);
-        handleResize();
-    
-        return () => {
-            window.removeEventListener('resize', handleResize);
-        };
-    }, []);
-    
-
     return (
         <div id="map-page" className="main-container">
             {/* Sidebar */}
@@ -245,18 +249,18 @@ const MapComponent = () => {
                 </div>
             </div>
 
-             {/* Right Sidebar: Facility List */}
-            <div className="right-sidebar">
+            {/* Right Sidebar: Facility List */}
+            <div className="right-sidebar" ref={rightSidebarRef}>
                 <h3>Recycling Facilities</h3>
-                {filteredFacilities.length > 0 ? (
-                    filteredFacilities.map((facility) => {
+                {currentFacilities.length > 0 ? (
+                    currentFacilities.map((facility) => {
                         const distance = userLocation
                             ? calculateDistance(
-                                userLocation[0],
-                                userLocation[1],
-                                facility.latitude,
-                                facility.longitude
-                            ).toFixed(2)
+                                  userLocation[0],
+                                  userLocation[1],
+                                  facility.latitude,
+                                  facility.longitude
+                              ).toFixed(2)
                             : null;
                         return (
                             <div
@@ -288,6 +292,20 @@ const MapComponent = () => {
                 ) : (
                     <p>No facilities match your search criteria.</p>
                 )}
+
+                {/* Pagination Controls */}
+                <div className="pagination-controls">
+                    <button onClick={prevPage} disabled={currentPage === 1}>
+                        Previous
+                    </button>
+                    <span>Page {currentPage}</span>
+                    <button
+                        onClick={nextPage}
+                        disabled={currentPage === Math.ceil(filteredFacilities.length / facilitiesPerPage)}
+                    >
+                        Next
+                    </button>
+                </div>
             </div>
 
             {/* Map and Search */}
@@ -307,11 +325,15 @@ const MapComponent = () => {
                 </div>
 
                 {/* Map */}
-                <MapContainer center={[47.6567, -122.3166]} zoom={13} className="map"
-                whenReady={(map) => {
-        map.target.invalidateSize(); // Ensures the map adjusts to its container
-    }}>
-                     <TileLayer
+                <MapContainer
+                    center={[47.6567, -122.3166]}
+                    zoom={13}
+                    className="map"
+                    whenReady={(map) => {
+                        map.target.invalidateSize(); // Ensures the map adjusts to its container
+                    }}
+                >
+                    <TileLayer
                         attribution="&copy; <a href='https://www.openstreetmap.org/copyright'>OpenStreetMap</a> contributors"
                         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                     />
