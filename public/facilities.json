@@ -273,21 +273,6 @@
         "directions": "https://www.google.com/maps/dir/?api=1&destination=8100+2nd+Ave+S,+Seattle,+WA+98108"
     },
     {
-        "id": "25",
-        "name": "Factoria Hazardous Waste Disposal",
-        "latitude": 47.5786,
-        "longitude": -122.1496,
-        "address": "13800 SE 32nd St, Bellevue, WA 98005",
-        "description": "Handles hazardous waste and electronic waste.",
-        "materials": ["Hazardous Waste", "E-waste"],
-        "county": "King",
-        "city": "Bellevue",
-        "hours": "Tue-Fri: 8:00 AM - 4:00 PM; Sat-Sun: 9:00 AM - 5:00 PM",
-        "contact": "(206) 477-4466",
-        "website": "https://kingcounty.gov/factoria-hazardous-waste",
-        "directions": "https://www.google.com/maps/dir/?api=1&destination=13800+SE+32nd+St,+Bellevue,+WA+98005"
-    },
-    {
         "id": "26",
         "name": "Auburn Hazardous Waste Disposal",
         "latitude": 47.3143,
